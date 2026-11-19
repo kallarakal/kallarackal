@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maliackal Kuruvila Thommy (മാളിയേക്കൽ കുരുവിള തൊമ്മി) - Family Tree &amp; History</title>
+    <style>
+        :root {
+            --bg-color: #fcfaf5;
+            --text-color: #2c1a0c;
+            --header-color: #3b2210;
+            --gold-accent: #af8133;
+            --gold-border: #b38938;
+            --gold-light: #edd18c;
+            --male-fill: #eef5fa;
+            --male-stroke: #5d88a4;
+            --male-text: #1e3a5f;
+            --female-fill: #faf0f2;
+            --female-stroke: #bc7585;
+            --female-text: #6d2b3c;
+            --parent-fill: #fdfaf3;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            margin: 0;
+            padding: 0 0 60px 0;
+        }
+
+        /* Sticky Top Navigation Bar */
+        .top-nav {
+            background: rgba(31, 22, 16, 0.94);
+            border-bottom: 1px solid rgba(175, 129, 51, 0.4);
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+            padding: 8px 18px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            backdrop-filter: blur(8px);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btn {
+            background: #2a1b12;
+            border: 1px solid #af8133;
+            color: #f0dbaf;
+            padding: 6px 13px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            background: #422d1f;
+            color: #ffffff;
+            border-color: #d8a84e;
+            box-shadow: 0 2px 8px rgba(175, 129, 51, 0.3);
+        }
+
+        .home-btn-nav {
+            background: #4a2e18;
+            border-color: #d8a84e;
+            color: #fff2d1;
+            font-weight: 700;
+        }
+
+        .home-btn-nav:hover {
+            background: #633f21;
+            border-color: #edd18c;
+        }
+
+        .nav-center {
+            text-align: center;
+            flex: 1 1 auto;
+        }
+
+        .nav-title {
+            color: #edd18c;
+            font-size: 14.5px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .zoom-text {
+            color: #edd18c;
+            font-size: 12.5px;
+            font-weight: 700;
+            min-width: 44px;
+            text-align: center;
+        }
+
+        /* Main Content Container */
+        .content-wrap {
+            padding: 20px 20px 40px 20px;
+        }
+
+        /* Header Area */
+        .header-box {
+            text-align: center;
+            max-width: 900px;
+            margin: 10px auto 20px auto;
+        }
+
+        .generation-tag {
+            font-size: 18px;
+            font-weight: 700;
+            color: #8c5d1e;
+            margin: 0 0 4px 0;
+            letter-spacing: 0.5px;
+        }
+
+        .header-box h1 {
+            margin: 6px 0 12px 0;
+            color: var(--header-color);
+            font-size: 27px;
+            line-height: 1.35;
+        }
+
+        .header-home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #2a1b12;
+            border: 1.5px solid #af8133;
+            color: #f0dbaf;
+            padding: 9px 20px;
+            border-radius: 8px;
+            font-size: 14.5px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(60, 40, 18, 0.15);
+            margin: 6px 0 12px 0;
+        }
+
+        .header-home-btn:hover {
+            background: #422d1f;
+            border-color: #d8a84e;
+            color: #ffffff;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(60, 40, 18, 0.25);
+        }
+
+        /* Tree Scroll Container */
+        .tree-scroll-container {
+            width: 100%;
+            max-width: 1600px;
+            margin: 25px auto 35px auto;
+            overflow-x: auto;
+            padding-bottom: 14px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .family-sub-tree {
+            background: #ffffff;
+            border: 2px solid #b38938;
+            border-radius: 12px;
+            box-shadow: 0 10px 28px rgba(60, 40, 18, 0.12);
+            display: block;
+            margin: 0 auto;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            transform-origin: top center;
+            transition: transform 0.2s ease;
+        }
+
+        a.node-link {
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        a.node-link rect {
+            transition: filter 0.18s ease, stroke-width 0.18s ease;
+        }
+
+        a.node-link:hover rect {
+            stroke-width: 2.8 !important;
+            filter: brightness(0.96) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.18));
+        }
+
+        a.node-link:hover text {
+            text-decoration: underline;
+        }
+
+        /* History & Biography Text */
+        .bio-section {
+            max-width: 960px;
+            margin: 25px auto;
+        }
+
+        p {
+            max-width: 960px;
+            margin: 0 auto 1.4em auto;
+            font-size: 16.5px;
+            text-align: justify;
+            line-height: 1.85;
+        }
+
+        .section-lead {
+            font-size: 17px;
+            font-weight: 600;
+            color: #634018;
+            border-left: 4px solid #b38938;
+            padding-left: 12px;
+            margin-bottom: 1.2em;
+        }
+
+        .section-separator {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, rgba(179, 137, 56, 0.1), rgba(179, 137, 56, 0.6), rgba(179, 137, 56, 0.1));
+            margin: 35px auto;
+            max-width: 800px;
+        }
+
+        @media print {
+            .top-nav, .nav-btn, .header-home-btn { display: none !important; }
+            body { background: white !important; color: black !important; padding: 0 !important; }
+            .tree-scroll-container { overflow: visible !important; }
+            .family-sub-tree { box-shadow: none !important; border: 1px solid #444 !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Top Navigation Bar -->
+    <header class="top-nav">
+        <div class="nav-left">
+            <a href="index.html" class="nav-btn home-btn-nav" title="Back to Home (Main Family Tree)">
+                &#127968; Home
+            </a>
+            <a href="Anathanam_KunjuVarkey_Kuruvila.html" class="nav-btn" title="View Father's Family Tree: Anathanam KunjuVarkey Kuruvila">
+                &uarr; Father's Tree (Kuruvila)
+            </a>
+        </div>
+        <div class="nav-center">
+            <span class="nav-title">മാളിയേക്കൽ കുരുവിള തൊമ്മി &bull; Maliackal Kuruvila Thommy</span>
+        </div>
+        <div class="nav-controls">
+            <button class="nav-btn" onclick="changeZoom(-0.1)" title="Zoom Out">&minus;</button>
+            <span class="zoom-text" id="zoomLevel">100%</span>
+            <button class="nav-btn" onclick="changeZoom(0.1)" title="Zoom In">&plus;</button>
+            <button class="nav-btn" onclick="resetZoom()" title="Reset Zoom">Reset</button>
+            <button class="nav-btn" onclick="fitWidth()" title="Fit Tree to Screen Width">Fit Width</button>
+        </div>
+    </header>
+
+    <div class="content-wrap">
+        
+        <!-- Header Box -->
+        <div class="header-box">
+            <p class="generation-tag">ആറാം തലമുറ &bull; Sixth Generation</p>
+            <h1>
+                മാളിയേക്കൽ കുരുവിള തൊമ്മി<br>
+                <span style="font-size: 23px; font-weight: 600; color: #4a3319;">Maliackal Kuruvila Thommy</span>
+            </h1>
+            <div>
+                <a href="index.html" class="header-home-btn" title="Back to Home / Main Family Tree">
+                    &#127968; Home (Main Family Tree) &rarr;
+                </a>
+            </div>
+        </div>
+
+        <!-- Thommy Maliackal & Aeli Family Tree Diagram -->
+        <div class="tree-scroll-container" id="scrollWrapper">
+            <svg class="family-sub-tree" id="familySvg" width="2764" height="230" viewBox="0 0 2764 230" preserveAspectRatio="xMidYMin meet">
+                
+                <!-- Connectors -->
+                <!-- Vertical stem from parents -->
+                <line x1="1382" y1="78" x2="1382" y2="118" stroke="#af8133" stroke-width="2.5" />
+                <!-- Horizontal branch spanning all 14 children -->
+                <line x1="121" y1="118" x2="2643" y2="118" stroke="#af8133" stroke-width="2.5" />
+                <!-- Vertical drops to each child -->
+                <line x1="121" y1="118" x2="121" y2="148" stroke="#af8133" stroke-width="2.5" />
+                <line x1="313" y1="118" x2="313" y2="148" stroke="#af8133" stroke-width="2.5" />
+                <line x1="505" y1="118" x2="505" y2="148" stroke="#af8133" stroke-width="2.5" />
+                <line x1="697" y1="118" x2="697" y2="148" stroke="#af8133" stroke-width="2.5" />
+                <line x1="889" y1="118" x2="889" y2="148" stroke="#af8133" stroke-width="2.5" />
+                <line x1="1081" y1="118" x2="1081" y2="148" stroke="#af8133" stroke-width="2.5" />
+                <line x1="1273" y1="118" x2="1273" y2="148" stroke="#af8133" stroke-width="2.5" />
+                <line x1="1465" y1="118" x2="1465" y2="148" stroke="#af8133" stroke-width="2.5" />
+                <line x1="1657" y1="118" x2="1657" y2="148" stroke="#af8133" stroke-width="2.5" />
+                <line x1="1849" y1="118" x2="1849" y2="148" stroke="#af8133" stroke-width="2.5" />
+                <line x1="2041" y1="118" x2="2041" y2="148" stroke="#af8133" stroke-width="2.5" />
+                <line x1="2233" y1="118" x2="2233" y2="148" stroke="#af8133" stroke-width="2.5" />
+                <line x1="2425" y1="118" x2="2425" y2="148" stroke="#af8133" stroke-width="2.5" />
+                <line x1="2617" y1="118" x2="2617" y2="148" stroke="#af8133" stroke-width="2.5" />
+
+                <!-- Parents Box (Generation 6) -->
+                <g>
+                    <rect x="1202" y="18" width="360" height="60" rx="8" ry="8" fill="#fdfaf3" stroke="#b38938" stroke-width="2.5" style="filter: drop-shadow(0 3px 6px rgba(60, 40, 18, 0.15));" />
+                    <text x="1382" y="42" text-anchor="middle" font-size="15px" font-weight="700" fill="#2c1a0c">Thommy Maliackal &amp; Aeli</text>
+                    <text x="1382" y="62" text-anchor="middle" font-size="12px" font-weight="600" fill="#7a5823">(Aeli from Tharavattathil, Meenachil)</text>
+                </g>
+
+                <!-- Child 1: Chachi (Daughter) -->
+                <g>
+                    <a class="node-link" href="Chachi_Kadakassery.html" xlink:href="Chachi_Kadakassery.html" title="Open Chachi Kadakassery">
+                        <rect x="36" y="148" width="170" height="66" rx="8" ry="8" fill="#faf0f2" stroke="#bc7585" stroke-width="2" style="filter: drop-shadow(0 3px 6px rgba(60, 40, 18, 0.12));" />
+                        <text x="121" y="173" text-anchor="middle" font-size="13px" font-weight="700" fill="#6d2b3c">Chachi</text>
+                        <text x="121" y="194" text-anchor="middle" font-size="11px" font-weight="600" fill="#8c4e5e">m. Pothan Kadakassery</text>
+                    </a>
+                </g>
+
+                <!-- Child 2: Kuruvila (Son) -->
+                <g>
+                    <a class="node-link" href="Kuruvila_Maliackal_Infant.html" xlink:href="Kuruvila_Maliackal_Infant.html" title="Open Kuruvila (Infant)">
+                        <rect x="228" y="148" width="170" height="66" rx="8" ry="8" fill="#eef5fa" stroke="#5d88a4" stroke-width="2" style="filter: drop-shadow(0 3px 6px rgba(60, 40, 18, 0.12));" />
+                        <text x="313" y="173" text-anchor="middle" font-size="13px" font-weight="700" fill="#1e3a5f">Kuruvila</text>
+                        <text x="313" y="194" text-anchor="middle" font-size="11px" font-weight="500" fill="#607d8b">(died in infancy)</text>
+                    </a>
+                </g>
+
+                <!-- Child 3: Joseph (Son) -->
+                <g>
+                    <a class="node-link" href="Joseph_Maliackal.html" xlink:href="Joseph_Maliackal.html" title="Open Joseph Maliackal">
+                        <rect x="420" y="148" width="170" height="66" rx="8" ry="8" fill="#eef5fa" stroke="#5d88a4" stroke-width="2" style="filter: drop-shadow(0 3px 6px rgba(60, 40, 18, 0.12));" />
+                        <text x="505" y="173" text-anchor="middle" font-size="13px" font-weight="700" fill="#1e3a5f">Joseph</text>
+                        <text x="505" y="194" text-anchor="middle" font-size="11px" font-weight="600" fill="#4a6572">m. Anna Kadmapuzha</text>
+                    </a>
+                </g>
+
+                <!-- Child 4: Anna (Daughter) -->
+                <g>
+                    <a class="node-link" href="Anna_Perekkatt.html" xlink:href="Anna_Perekkatt.html" title="Open Anna Perekkatt">
+                        <rect x="612" y="148" width="170" height="66" rx="8" ry="8" fill="#faf0f2" stroke="#bc7585" stroke-width="2" style="filter: drop-shadow(0 3px 6px rgba(60, 40, 18, 0.12));" />
+                        <text x="697" y="173" text-anchor="middle" font-size="13px" font-weight="700" fill="#6d2b3c">Anna</text>
+                        <text x="697" y="194" text-anchor="middle" font-size="11px" font-weight="600" fill="#8c4e5e">m. Kuruvila Perekkatt</text>
+                    </a>
+                </g>
+
+                <!-- Child 5: Mariya / Mammy (Daughter) -->
+                <g>
+                    <a class="node-link" href="Mariya_Kavalam.html" xlink:href="Mariya_Kavalam.html" title="Open Mariya (Mammy) Kavalam">
+                        <rect x="804" y="148" width="170" height="66" rx="8" ry="8" fill="#faf0f2" stroke="#bc7585" stroke-width="2" style="filter: drop-shadow(0 3px 6px rgba(60, 40, 18, 0.12));" />
+                        <text x="889" y="173" text-anchor="middle" font-size="13px" font-weight="700" fill="#6d2b3c">Mariya (Mammy)</text>
+                        <text x="889" y="194" text-anchor="middle" font-size="11px" font-weight="600" fill="#8c4e5e">m. Kochouseph Kavalam</text>
+                    </a>
+                </g>
+
+                <!-- Child 6: Aeli (Daughter) -->
+                <g>
+                    <a class="node-link" href="Aeli_Vettimuttamkavil.html" xlink:href="Aeli_Vettimuttamkavil.html" title="Open Aeli Vettimuttamkavil">
+                        <rect x="996" y="148" width="170" height="66" rx="8" ry="8" fill="#faf0f2" stroke="#bc7585" stroke-width="2" style="filter: drop-shadow(0 3px 6px rgba(60, 40, 18, 0.12));" />
+                        <text x="1081" y="173" text-anchor="middle" font-size="13px" font-weight="700" fill="#6d2b3c">Aeli</text>
+                        <text x="1081" y="194" text-anchor="middle" font-size="10.5px" font-weight="600" fill="#8c4e5e">m. Varkey Vettimuttamkavil</text>
+                    </a>
+                </g>
+
+                <!-- Child 7: Thresia (Daughter) -->
+                <g>
+                    <a class="node-link" href="Thresia_Karimthakarakal.html" xlink:href="Thresia_Karimthakarakal.html" title="Open Thresia Karimthakarakal">
+                        <rect x="1188" y="148" width="170" height="66" rx="8" ry="8" fill="#faf0f2" stroke="#bc7585" stroke-width="2" style="filter: drop-shadow(0 3px 6px rgba(60, 40, 18, 0.12));" />
+                        <text x="1273" y="173" text-anchor="middle" font-size="13px" font-weight="700" fill="#6d2b3c">Thresia</text>
+                        <text x="1273" y="194" text-anchor="middle" font-size="10.5px" font-weight="600" fill="#8c4e5e">m. Mathew Karimthakarakal</text>
+                    </a>
+                </g>
+
+                <!-- Child 8: Kathreena / Achamma (Daughter) -->
+                <g>
+                    <a class="node-link" href="Kathreena_Maliackal_Infant.html" xlink:href="Kathreena_Maliackal_Infant.html" title="Open Kathreena (Achamma - Infant)">
+                        <rect x="1380" y="148" width="170" height="66" rx="8" ry="8" fill="#faf0f2" stroke="#bc7585" stroke-width="2" style="filter: drop-shadow(0 3px 6px rgba(60, 40, 18, 0.12));" />
+                        <text x="1465" y="173" text-anchor="middle" font-size="12px" font-weight="700" fill="#6d2b3c">Kathreena (Achamma)</text>
+                        <text x="1465" y="194" text-anchor="middle" font-size="11px" font-weight="500" fill="#8c4e5e">(died in infancy)</text>
+                    </a>
+                </g>
+
+                <!-- Child 9: Kathreena / Achamma (Daughter) -->
+                <g>
+                    <a class="node-link" href="Kathreena_Perekkatt.html" xlink:href="Kathreena_Perekkatt.html" title="Open Kathreena (Achamma) Perekkatt">
+                        <rect x="1572" y="148" width="170" height="66" rx="8" ry="8" fill="#faf0f2" stroke="#bc7585" stroke-width="2" style="filter: drop-shadow(0 3px 6px rgba(60, 40, 18, 0.12));" />
+                        <text x="1657" y="173" text-anchor="middle" font-size="12px" font-weight="700" fill="#6d2b3c">Kathreena (Achamma)</text>
+                        <text x="1657" y="194" text-anchor="middle" font-size="11px" font-weight="600" fill="#8c4e5e">m. Kuruvla Perekkatt</text>
+                    </a>
+                </g>
+
+                <!-- Child 10: Kuruvla (Son) -->
+                <g>
+                    <a class="node-link" href="Kuruvla_Maliackal.html" xlink:href="Kuruvla_Maliackal.html" title="Open Kuruvla Maliackal">
+                        <rect x="1764" y="148" width="170" height="66" rx="8" ry="8" fill="#eef5fa" stroke="#5d88a4" stroke-width="2" style="filter: drop-shadow(0 3px 6px rgba(60, 40, 18, 0.12));" />
+                        <text x="1849" y="173" text-anchor="middle" font-size="13px" font-weight="700" fill="#1e3a5f">Kuruvla</text>
+                        <text x="1849" y="194" text-anchor="middle" font-size="11px" font-weight="600" fill="#4a6572">m. Anna Pottamkulam</text>
+                    </a>
+                </g>
+
+                <!-- Child 11: Mathai (Son) -->
+                <g>
+                    <a class="node-link" href="Mathai_Maliackal.html" xlink:href="Mathai_Maliackal.html" title="Open Mathai Maliackal">
+                        <rect x="1956" y="148" width="170" height="66" rx="8" ry="8" fill="#eef5fa" stroke="#5d88a4" stroke-width="2" style="filter: drop-shadow(0 3px 6px rgba(60, 40, 18, 0.12));" />
+                        <text x="2041" y="173" text-anchor="middle" font-size="13px" font-weight="700" fill="#1e3a5f">Mathai</text>
+                        <text x="2041" y="194" text-anchor="middle" font-size="10px" font-weight="600" fill="#4a6572">m. Pennamma Menamparambil</text>
+                    </a>
+                </g>
+
+                <!-- Child 12: Thommy / Nanichan (Son) -->
+                <g>
+                    <a class="node-link" href="Thommy_Nanichan_Maliackal.html" xlink:href="Thommy_Nanichan_Maliackal.html" title="Open Thommy (Nanichan) Maliackal">
+                        <rect x="2148" y="148" width="170" height="66" rx="8" ry="8" fill="#eef5fa" stroke="#5d88a4" stroke-width="2" style="filter: drop-shadow(0 3px 6px rgba(60, 40, 18, 0.12));" />
+                        <text x="2233" y="173" text-anchor="middle" font-size="13px" font-weight="700" fill="#1e3a5f">Thommy (Nanichan)</text>
+                        <text x="2233" y="194" text-anchor="middle" font-size="11px" font-weight="600" fill="#4a6572">m. Aeli Vallikkappil</text>
+                    </a>
+                </g>
+
+                <!-- Child 13: Varkey (Son) -->
+                <g>
+                    <a class="node-link" href="Varkey_Maliackal.html" xlink:href="Varkey_Maliackal.html" title="Open Varkey Maliackal">
+                        <rect x="2340" y="148" width="170" height="66" rx="8" ry="8" fill="#eef5fa" stroke="#5d88a4" stroke-width="2" style="filter: drop-shadow(0 3px 6px rgba(60, 40, 18, 0.12));" />
+                        <text x="2425" y="173" text-anchor="middle" font-size="13px" font-weight="700" fill="#1e3a5f">Varkey</text>
+                        <text x="2425" y="194" text-anchor="middle" font-size="11px" font-weight="600" fill="#4a6572">m. Rossamma Neerackal</text>
+                    </a>
+                </g>
+
+                <!-- Child 14: KochuThresia / Theyyamma (Daughter) -->
+                <g>
+                    <a class="node-link" href="KochuThresia_Maliackal.html" xlink:href="KochuThresia_Maliackal.html" title="Open KochuThresia (Theyyamma) Maliackal">
+                        <rect x="2532" y="148" width="170" height="66" rx="8" ry="8" fill="#faf0f2" stroke="#bc7585" stroke-width="2" style="filter: drop-shadow(0 3px 6px rgba(60, 40, 18, 0.12));" />
+                        <text x="2617" y="173" text-anchor="middle" font-size="13px" font-weight="700" fill="#6d2b3c">KochuThresia</text>
+                        <text x="2617" y="194" text-anchor="middle" font-size="11px" font-weight="600" fill="#8c4e5e">(Theyyamma)</text>
+                    </a>
+                </g>
+
+            </svg>
+        </div>
+
+        <!-- History & Biography Content -->
+        <main class="bio-section">
+            
+            <p class="section-lead">
+                1976-ൽ പുനഃപ്രസിദ്ധീകരിച്ച കല്ലറയ്ക്കൽ കുടുംബ ചരിത്ര പുസ്തകത്തിൽ നിന്നുള്ള ഭാഗങ്ങളാണ് താഴെ നൽകിയിരിക്കുന്നത്.
+            </p>
+
+            <p>
+                E ശാഖയിലെ അഞ്ചാംതലമുറക്കാരനായി ആദ്യകാലം കല്ലറയ്ക്കൽവീട്ടിലും പിന്നീടു് ആനത്താനത്തു പണിയിച്ചിരുന്ന വീട്ടിലും താമസിച്ചിരുന്ന 
+                കുരുവിളയുടെ മൂന്നാമത്തെ സന്താനവും ആറാം തലമുറക്കാരനുമായ കുരുവിള തൊമ്മി 1873-&nbsp;ാമാണ്ടു തുലാമാസത്തിൽ ഭൂജാതനായി.
+                തൻറെ 7-&nbsp;ാമത്തെ വയസ്സിൽ മാതാവു മരിച്ചതിനാൽ പിതാവിൻറെയും വല്യമ്മ മുതലായവരുടെയും ലാളനയിൽ വളർന്നു.  
+                മലയാള വിദൃാഭ്യാസത്തിനു ശേഷം 1882-&nbsp;ാമാണ്ടു് ചിങ്ങം 2-&nbsp;ാംതീയതി മീനച്ചിൽ കിഴവറയാരുകരയിൽ തറവട്ടത്തിൽ 
+                മത്തായിയുടെ പുത്രി ഏലിയെ വിവാഹം ചെയ്തു.  പിതാവിന്റെ ആജ്ഞപ്രകാരവും, സഹകരണത്തിലും 1896-&nbsp;ാംമാണ്ടു്
+                മാളിയേക്കൽ പുരയിടത്തിൽ തന്റെ മേൽനോട്ടത്തിൽ ദേഹണ്ഡങ്ങൾ  നടത്തിത്തുടങ്ങി.  1897 മുതൽ പണി ആരംഭിച്ചതായ 
+                രണ്ടുനില മാളിക പൂർത്തിയായ ശേഷം അവിടേക്കു് മാറി താമസിച്ചു.  ചാച്ചി, കുരുവിള, ജോസഫ്, അന്ന, മാമ്മി, ഏലി, ത്രേസ്യാ, 
+                അച്ചാമ്മ, കത്രീനാ, കുരുവിള, മത്തായി, തൊമ്മി, വർക്കി, കൊച്ചുത്രേസ്യാ ഇങ്ങനെ 14 സന്താനങ്ങൾ അദ്ദേഹത്തിനുണ്ടായിരുന്നു.
+            </p>   
+
+            <p>
+                ഇതിൽ കുരുവിളയും അച്ചാമ്മ എന്നു വിളിച്ചിരുന്ന കത്രീനായും ശിശുപ്രായത്തിൽ മരിച്ചുപോയി.
+            </p>
+
+            <p>
+                ആദൃപുത്രിയായ ചാച്ചിയെ 1909 മകരത്തിൽ അയർക്കുന്നത്തു കടകശേരി കുടുംബത്തിൻറെ ഉപകുടുംബമായ വലേൃലിൽ ദേവസ്യായുടെ പുത്രൻ പോത്തൻ വിവാഹം കഴിച്ചു.
+            </p>
+
+            <p>
+                മൂന്നാമത്തെ സന്താനമായ ജോസഫിനെക്കൊണ്ടു് കാഞ്ഞിരപ്പള്ളി പുത്തൻപുരക്കൽ  കുടുംബത്തിൽപെട്ട കടമപ്പുഴ ചാക്കോയുടെ പുത്രിയായ അന്നയെ വിവാഹം കഴിപ്പിച്ചു.
+            </p>
+
+            <p>
+                നാലാമത്തെ സന്താനമായ അന്നയെ മീനച്ചിൽ, ഇടമററത്തു പേരേക്കാട്ടു് കുരുവിള വിവാഹം ചെയ്തു.
+            </p>
+
+            <p>
+                അഞ്ചാമത്തെ സന്താനമായ മറിയ (മാമ്മി) യെ ചങ്ങനാശേരി കാവാലം പുതുപ്പറമ്പിൽ കൊച്ചൗസേപ്പച്ചനെക്കൊണ്ടു വിവാഹം കഴിപ്പിച്ചു.
+            </p>
+
+            <p>
+                ആറാമത്തെ സന്താനമായ ഏലിയെ അരുവിത്തുറ, വെളളൂക്കുന്നേൽ (തിടനാടു്) വെട്ടിമുട്ടങ്കാവിൽ വർക്കി വിവാഹം ചെയ്തു.
+            </p>
+
+            <p>
+                ഏഴാമത്തെ സന്താനമായ ത്രേസ്യായെ മുട്ടുചിറ കരിംതകരക്കൽ മാത്യവിനു് വിവാഹം ചെയ്തുകൊടുത്തു.
+            </p>
+
+            <p>
+                9-&nbsp;ാമത്തെ സന്താനമായ കത്രീനാ (അച്ചാമ്മ) യെ മീനച്ചിൽ പേരേക്കാട്ട് ഔസേപ്പിന്റെ പുത്രൻ കുരുവിള വിവാഹം ചെയ്തു.
+            </p>
+
+            <p>
+                പത്താമത്തെ സന്താനമായ കുരുവിള അരുവിത്തുറ മുൻകടുംബാംഗമായ കല്ലറയ്ക്കുൽ പൊട്ടംങ്കുളത്തു സഖറിയായുടെ പുത്രി അന്നയെ വിവാഹം ചെയ്തു.
+            </p>
+
+            <p>
+                11-&nbsp;ാംമത്തെ സന്താനമായ മത്തായി പാലായിൽ മേനാമ്പറമ്പിൽ കുഞ്ഞമ്മൻ പുത്രി പെണ്ണമ്മയെ വിവാഹം ചെയ്തു.
+            </p>
+
+            <p>
+                12-&nbsp;ാമത്തെ സന്താനമായ തൊമ്മി അരുവിത്തുറ വള്ളിക്കാപ്പിൽ ജോസഫിൻറ പുത്രി ഏലിയെ കല്യാണം കഴിച്ചു.
+            </p>
+
+            <p>
+                പതിമൂന്നാമത്തെ സന്താനമായ വർക്കിയെക്കൊണ്ടു മുട്ടുചിറ നീരാക്കൽ ചാണ്ടി അവർകളുടെ പുത്രി റോസയെ വിവാഹം ചെയ്യിപ്പിച്ചു.
+            </p>
+
+            <p>
+                പതിന്നാലാമത്തെ സന്താനമായ കൊച്ചുത്രേസൃാ  (തെയ്യാമ്മ) പക്ഷപാതം പിടിപെട്ടു നടക്കാൻ പാടില്ലാതെ ഇപ്പോൾ സഹോദരൻ വർക്കിയടെ കൂടെ താമസിക്കുന്നു.
+            </p>
+
+            <p>
+                1910-&nbsp;ാംമാണ്ടു മുതൽ നെടുങ്ങാടു് ചേരിക്കലിൽ ദേഹണ്ഡങ്ങളാരംഭിച്ചു. 1914-ൽ പിതാവിനാൽ തയ്യാറാക്കപ്പെട്ട ഉടംമ്പടി പ്രകാരം, 
+                തനിക്കു് ലഭിച്ചിട്ടുള്ള നെടുങ്ങാടു് ചേരിക്കലിൽ തൊമ്മി ദേഹണ്ഡങ്ങൾ ആരംഭിച്ചു. 1920 മുതൽ മണ്ണർക്കാടു, ഇഞ്ചിക്കുന്നു് എന്നു പേരുള്ള 
+                കമ്പനിയിൽ ഒരോഹരി ചേർന്നു.  പിൽക്കാലത്തു് 1935-ൽ ജ്യേഷ്ഠൻ കുഞ്ഞു വർക്കിയുടേയും, ഇളയ സഹോദരങ്ങളിൽ തോമസ് 
+                മുതലായവരുടെയും വകയായ രണ്ടു ഷെയറുകൾ ഉൾപ്പെടെ 3 ഷെയറുകൾ സഹോദരങ്ങൾ പ്രതിഫലം കൂടാതെ തൊമ്മിക്കു് ഉപേക്ഷിച്ചു വിട്ടു കൊടുത്തു.  
+                മണ്ണാറക്കയത്തിനു സമീപമുള്ള ചൂണ്ടശേരി പുരയിടം വാങ്ങി. (ററി. ബി. റോഡരികിൽ ) ഒരു പീടിക പണിതതും, തീപ്പിരിപ്പറമ്പ് എന്ന പുരയിടം വാങ്ങി 
+                അതിൽ പല കെട്ടിടങ്ങൾ പണിതതും, തൊമ്മിയുടെ നേട്ടങ്ങളത്രെ.  നെടുങ്ങാടു ചേരിക്കലിലെ ദേഹണ്ഡങ്ങളിൽ നടുവത്തുശേരിഭാഗത്ത് ഒരു പുര 
+                പണിയിച്ചു്, പുത്രനായ ജോസഫിനെ അവിടെ താമസിപ്പിച്ചു.  ചിററടി ചേരിക്കലിൽ കുടുംബാവകാശമായി കിട്ടിയിരുന്നതും, അവകാശപ്രകാരം വ്യവഹാരത്താൽ 
+                ഒഴിപ്പിച്ചു വാങ്ങിയതുമായ സ്ഥലത്തു് ദേഹണ്ഡങ്ങൾ ചെയ്തു.  കൂടാതെ പാലമ്പ്ര ചേരിക്കൽ അന്ന്യർക്കു  വിലയ്ക്കുകൊടുത്തു.  ബാക്കിയുള്ള സ്ഥലങ്ങളിൽ 
+                ദേഹണ്ഡങ്ങൾ നടത്തി.  പിന്നീടു് ചൂണ്ടശേരിപ്പറമ്പിൽ ഒരു വീടുകൂടി പണിയിച്ചു് മത്തായിയെ അവിടെ താമസിപ്പിച്ചു.  നെടുങ്ങാടു് ചേരിക്കലിൽ ആറിൻറെ 
+                അടുത്തു ഒരു പുര പണിയിച്ച് അതിൽ 12-&nbsp;ാമത്തെ സന്താനമായ തൊമ്മി (നാനിച്ചൻ ) യെ താമസിപ്പിച്ചു. 13-&nbsp;ാമത്തെ സന്താനമായ വർക്കി തന്നോടുകൂടി 
+                പാത്തുവരുന്ന കാലത്തു് (1972-&nbsp;ാമാണ്ടു് ഇടവത്തിൽ) ഭാരൃയായ ഏലി മരണം പ്രാപിച്ചു.
+            </p>
+
+            <hr class="section-separator">
+
+            <p class="section-lead">
+                The following is excerpts from Kallarackal Family history book that was republished in 1976:
+            </p>
+
+            <p>
+                "Kuruvila Thommy, the third child of Kuruvila—who belonged to the 5th generation of the E Branch and lived initially at Kallarackal Veedu and later at the house built in Anathanam—and a 6th generation descendant, was born in the month of Thulam in the year 1873.
+            </p>
+
+            <p>
+                As his mother passed away when he was 7 years old, he was raised under the loving care of his father, his paternal aunt (Valyamma), and other elders of the household.
+            </p>
+
+            <p>
+                Following his primary education in Malayalam, on the 2nd of Chingam, 1882,* he married Eli, daughter of Mathai of the Tharavattathil family in Kizhavarayarukara, Meenachil.
+            </p>
+
+            <p>
+                In accordance with his father's directive and with his cooperation, in the year 1896, he commenced land cultivation and agricultural improvements (dehandangal) under his own supervision on the Maliyekkal property. After the two-storey mansion (maalika), whose construction began in 1897, was completed, he moved and settled there.
+            </p>
+
+            <p>
+                He had fourteen children: Chachi, Kuruvila, Joseph, Anna, Mammy, Eli, Thresia, Achamma, Katrina, Kuruvila, Mathai, Thommy, Varkey, and Kochuthresia."
+            </p>
+
+            <p>
+                Among them, Kuruvila and Kathreena—who was called Achamma—died in infancy.
+            </p>
+
+            <p>
+                In the month of Makaram, 1909, Pothan—son of Devasya from the Vallaylil branch (a sub-branch of the Kadakasheri family in Ayarkunnam)—married Chachi, the eldest daughter.
+            </p>
+
+            <p>
+                They arranged for their third child, Joseph, to marry Anna—the daughter of Kadamappuzha Chacko, who belonged to the Puthenpurakkal family of Kanjirappally.
+            </p>
+
+            <p>
+                Anna, the fourth child, was married to Kuruvila of Perekkattu, in Edamattam, Meenachil.
+            </p>
+
+            <p>
+                The fifth child, Maria (Mammi), was married to Kochouseppachan of the Kavalam Puduparambil family in Changanassery.
+            </p>
+
+            <p>
+                Varkey of Vettimuttankavu—from the Vellukkunnel family in Aruvithura (Thidanad)—married Aeli, the sixth child.
+            </p>
+
+            <p>
+                The seventh child, Thresia, was given in marriage to Mathew of the Karimthakarakkal family in Muttuchira.
+            </p>
+
+            <p>
+                Kuruvila, the son of Ouseph of the Perekkattu family in Meenachil, married the ninth child, Kathreena (Achamma).
+            </p>
+
+            <p>
+                Kuruvila, the tenth child, married Anna—the daughter of Zacharia of the Kallarackal Pottamkulam branch of the Aruvithura family.
+            </p>
+
+            <p>
+                Mathai, the 11th child, married Pennamma, the daughter of Kunjamman from the Menamparambil family in Pala.
+            </p>
+
+            <p>
+                Thommi, the 12th child, married Eli, the daughter of Joseph from the Vallikkappil family in Aruvithura.
+            </p>
+
+            <p>
+                They arranged for Varkey, their thirteenth child, to marry Rosa, the daughter of Neerakkal Chandy of Muttuchira.
+            </p>
+
+            <p>
+                Kochuthresia (Theyyamma), the fourteenth child, is unable to walk due to paralysis and is currently living with her brother, Varkey.
+            </p>
+
+            <p>
+                Cultivation activities began at Nedungadu Cherikkal in 1910. In accordance with an agreement drawn up by his father in 1914, Thommi commenced cultivation on the Nedungadu Cherikkal land that had been allotted to him. From 1920 onwards, he also acquired a share in a company known as 'Inchikkunnu' in Mannarkkad.
+                Later, in 1935, the siblings relinquished three shares—including one belonging to the elder brother, KunjuVarkey, and others from younger brothers such as Thomas—to Thommi, without any compensation.
+                Thommi purchased the Chundasheri property near Mannarakkayam (situated along the T.B. Road) and constructed a shop there; he also acquired the 'Theeppiriparambu' property, where he built several structures—all of which stand as his notable achievements. Furthermore, on the lands at Nedungadu Cherikkal, he had a house built in the Naduvathusheri area and settled his son, Joseph, there.
+                Improvements were made to the land at Chirradi Cherikkal—which had been acquired as a family entitlement and subsequently recovered through legal proceedings. Additionally, the land at Palampra Cherikkal was sold to third parties. Improvements were also carried out on the remaining lands. Later, another house was constructed at Chundasheriparambu, and Mathai was settled there.
+                He built a house near the river at Cherikkal in Nedungad and settled his 12th child, Thommi (Nanichan), there. While his 13th child, Varkey, was living with him—in the month of Edavam, 1972—his wife, Aeli, passed away.
+            </p>
+        </main>
+    </div>
+
+    <!-- Zoom & Fit Script -->
+    <script>
+        let currentZoom = 1.0;
+        const svgElement = document.getElementById('familySvg');
+        const zoomDisplay = document.getElementById('zoomLevel');
+        const scrollWrapper = document.getElementById('scrollWrapper');
+
+        function applyZoom() {
+            svgElement.style.transform = `scale(${currentZoom})`;
+            if (zoomDisplay) zoomDisplay.textContent = Math.round(currentZoom * 100) + '%';
+        }
+
+        function changeZoom(delta) {
+            currentZoom = Math.min(2.0, Math.max(0.35, currentZoom + delta));
+            applyZoom();
+        }
+
+        function resetZoom() {
+            currentZoom = 1.0;
+            applyZoom();
+        }
+
+        function fitWidth() {
+            const availableWidth = scrollWrapper.clientWidth - 30;
+            currentZoom = Math.max(0.35, Math.min(1.0, availableWidth / 2764));
+            applyZoom();
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            if (scrollWrapper && scrollWrapper.clientWidth < 2764) {
+                // If on mobile or narrow screen, smooth scroll to center parents box initially
+                const centerScroll = (2764 - scrollWrapper.clientWidth) / 2;
+                if (centerScroll > 0) {
+                    scrollWrapper.scrollLeft = centerScroll;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
